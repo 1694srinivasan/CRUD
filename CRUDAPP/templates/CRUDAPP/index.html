@@ -1,0 +1,39 @@
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form action="/create" method="post">
+	{% csrf_token %}
+	<label for="fname">First_Name: <input type=="text" name="fname" /></label>
+	<label for="lname">Last_Name: <input type="text" name="lname" /></label>
+	<input type="submit" value="Create" />
+	</form>
+
+	<table border="1">
+		<thread>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Created at</th>
+			<th>Updated at</th>
+			<th>Actions</th>
+		</tr>
+			
+		</thread>
+		<tbody>
+			{% for name in names %}
+			<tr>
+				<td>{{ name.fname }}</td>
+				<td>{{ name.lname }}</td>
+				<td>{{ name.created_at }}</td>
+				<td>{{ name.updated_at }}</td>
+				<td><a href="/edit/{{ name.id }}">EDIT</a>
+				<a href="/delete/{{ name.id }}">DELETE</a></td>
+			</tr>
+				
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
